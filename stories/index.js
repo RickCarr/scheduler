@@ -10,7 +10,7 @@ import Button from "components/Button";
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-  })
+  })  
   .add("Base", () => <Button>Base</Button>)
   .add("Confirm", () => <Button confirm>Confirm</Button>)
   .add("Danger", () => <Button danger>Cancel</Button>)
@@ -20,5 +20,5 @@ storiesOf("Button", module)
   .add("Disabled", () => (
     <Button disabled onClick={action("button-clicked")}>
       Disabled
-    </Button>
+    </Button>    
   ));
