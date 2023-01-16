@@ -1,4 +1,4 @@
-// import { findByTestId } from "@testing-library/react";
+import { findByTestId } from "@testing-library/react";
 
 export default function getAppointmentsForDay(state, day) {
   const filteredApts = state.days.filter(days => days.name === day);
@@ -9,7 +9,7 @@ export default function getAppointmentsForDay(state, day) {
 
 export function getInterview(state, interview) {
   if (!interview) return null;
-  const apt = Object.values(state.appointments).find(index => index.interview && index.interview.interviewer === interview.interviewer);  
+  const apt = Object.values(state.appointments).find(index => index.interview && index.interview.interviewer === interview.interviewer);
   return {
     "student": apt.interview.student,
     "interviewer": state.interviewers[apt.interview.interviewer]
@@ -17,8 +17,19 @@ export function getInterview(state, interview) {
 }
 
 export function getInterviewersForDay(state, day) {
-  const filteredInterviewers = state.days.filter(days => days.name === day);
-  return (state.days.length === 0 || filteredInterviewers.length === 0 ? [] :
-    filteredInterviewers[0].appointments.map((id) => state.appointments[id]
-    ));
+//   const filteredDays = state.days.filter(days => days.name === day);
+//   const apts = getAppointmentsForDay(state, day);
+
+//   if (state.days.length === 0 || filteredDays.length === 0) {
+//     return [];
+//   } else {
+//   const int = apts.filter(id => id.interview).map(id => getInterview(state, id.interview).interviewer);    
+//   console.log(int)
+//   return(int);
+// }
+const filteredDays = state.days.filter(days => days.name === day);
+
+return (state.days.length === 0 || filteredDays.length === 0 ? [] :
+  filteredDays[0].interviewers.map((id) => state.interviewers[id]
+  ));
 }
