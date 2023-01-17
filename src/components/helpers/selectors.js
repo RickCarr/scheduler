@@ -17,19 +17,19 @@ export function getInterview(state, interview) {
 }
 
 export function getInterviewersForDay(state, day) {
-//   const filteredDays = state.days.filter(days => days.name === day);
-//   const apts = getAppointmentsForDay(state, day);
+  //   const filteredDays = state.days.filter(days => days.name === day);
+  //   const apts = getAppointmentsForDay(state, day);
 
-//   if (state.days.length === 0 || filteredDays.length === 0) {
-//     return [];
-//   } else {
-//   const int = apts.filter(id => id.interview).map(id => getInterview(state, id.interview).interviewer);    
-//   console.log(int)
-//   return(int);
-// }
-const filteredDays = state.days.filter(days => days.name === day);
+  //   if (state.days.length === 0 || filteredDays.length === 0) {
+  //     return [];
+  //   } else {
+  //   const int = apts.filter(id => id.interview).map(id => getInterview(state, id.interview).interviewer);    
+  //   console.log(int)
+  //   return(int);
+  // }
+  const filteredDays = state.days.filter(days => days.name === day);
 
-return (state.days.length === 0 || filteredDays.length === 0 ? [] :
-  filteredDays[0].interviewers.map((id) => state.interviewers[id]
-  ));
+  return (state.days.length === 0 || filteredDays.length === 0 ? [] :
+    filteredDays[0].interviewers.map((id) => state.interviewers[id]
+    ));
 }

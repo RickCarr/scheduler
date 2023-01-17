@@ -4,9 +4,9 @@ import React from "react";
 
 export default function InterviewerListItem(props) {
   const interviewerItemClass = classNames("interviewers__item", {
-    "interviewers__item--selected": props.selected   
-  })
-  
+    "interviewers__item--selected": props.selected
+  });
+
   return (
     <>
       <li className={interviewerItemClass}

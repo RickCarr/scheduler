@@ -1,8 +1,8 @@
 import React from "react";
 import DayListItem from "./DayListItem";
 
-export default function DayList(props) {   
-  const currentDay = props.days.map((day) => 
+export default function DayList(props) {
+  const currentDay = props.days.map((day) =>
     <DayListItem
       key={day.id}
       name={day.name}
@@ -12,9 +12,9 @@ export default function DayList(props) {
     />
   );
 
-    return (
-      <ul>
-        {currentDay}
-      </ul>
-    );
+  return (
+    <ul>
+      {currentDay}
+    </ul>
+  );
 }
