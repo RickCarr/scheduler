@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import getAppointmentsForDay from "components/helpers/selectors";
+
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -17,10 +19,13 @@ export default function useApplicationData() {
       axios.get("/api/interviewers")
     ]).then((all) => {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
-      console.log("appointments", state.appointments);
     });
   }, []);
   
+  //vars to be used for both Book & Cancel interview
+  const currentDayIndex = state.days.findIndex(day => day.name === state.day);
+  const daysCopy = [...state.days];
+
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -31,13 +36,17 @@ export default function useApplicationData() {
       [id]: appointment
     };
     return axios.put(`/api/appointments/${id}`, { interview })
-      .then(() =>
+      .then(() => {
+        daysCopy[currentDayIndex].spots--;
         setState({
           ...state,
-          appointments
-        })
+          appointments,
+          days: daysCopy
+        });
+      }
       );
   };
+
   const cancelInterview = (id) => {
     const appointment = {
       ...state.appointments[id],
@@ -48,17 +57,20 @@ export default function useApplicationData() {
       [id]: appointment
     };
     return axios.delete(`/api/appointments/${id}`)
-      .then(() =>
+      .then(() => {
+        daysCopy[currentDayIndex].spots++;
         setState({
           ...state,
-          appointments
-        })
+          appointments,
+          days: daysCopy
+        });
+      }
       );
   };
   return {
-    state, 
-    setDay, 
-    bookInterview, 
+    state,
+    setDay,
+    bookInterview,
     cancelInterview
-  }  
+  };
 };
