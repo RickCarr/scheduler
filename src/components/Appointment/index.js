@@ -22,19 +22,19 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 //jsx, within funcitons, state first, then other functions, then return
-export default function Appointment(props) {
+export default function Appointment(props) {  
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
-  const save = function(name, interviewer) {
+  
+  const save = function(name, interviewer, edit) {        
     const interview = {
       student: name,
       interviewer
     };
     transition(SAVING, true);
     props
-      .bookInterview(props.id, interview)
+      .bookInterview(props.id, interview, edit)
       .then(() => transition(SHOW))
       .catch(error => transition(ERROR_SAVE, true));
   };
@@ -45,15 +45,11 @@ export default function Appointment(props) {
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
       .catch(error => transition(ERROR_DELETE, true));
-  };
-
-  const edit = function() {
-
-  };
+  }; 
 
   return (
     <>
-      <article className="appointment">
+      <article className="appointment" data-testid="appointment">
         <Header time={props.time} />
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
         {mode === CREATE &&
@@ -97,6 +93,7 @@ export default function Appointment(props) {
             interviewers={props.interviewers}
             onCancel={back}
             onSave={save}
+            edit={true}
           />}
       </article>
     </>

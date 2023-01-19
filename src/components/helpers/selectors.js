@@ -17,8 +17,7 @@ export function getInterview(state, interview) {
 }
 
 export function getInterviewersForDay(state, day) {
-  const filteredDays = state.days.filter(days => days.name === day);  
+  const filteredDays = state.days.filter(days => days.name === day);   
   return (state.days.length === 0 || filteredDays.length === 0 ? [] :
-    filteredDays[0].interviewers.map((id) => state.interviewers[id]
-    ));
+    filteredDays[0].interviewers.map((id) => state.interviewers[id]));
 }

@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import getAppointmentsForDay from "components/helpers/selectors";
-
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -26,7 +24,7 @@ export default function useApplicationData() {
   const currentDayIndex = state.days.findIndex(day => day.name === state.day);
   const daysCopy = [...state.days];
 
-  const bookInterview = (id, interview) => {
+  const bookInterview = (id, interview, edit) => {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -37,7 +35,7 @@ export default function useApplicationData() {
     };
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
-        daysCopy[currentDayIndex].spots--;
+        if (!edit) { daysCopy[currentDayIndex].spots--;}
         setState({
           ...state,
           appointments,

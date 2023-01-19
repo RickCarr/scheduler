@@ -3,7 +3,7 @@ import InterviewerList from "components/InterviewerList";
 import React, { useState, useTransition } from "react";
 
 
-export default function Form(props) {
+export default function Form(props) {    
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("")
@@ -11,14 +11,13 @@ export default function Form(props) {
   const reset = () => {
     setStudent("");
     setInterviewer(null);
+    setError("");
   };
   const cancel = () => {
     reset();
     props.onCancel();
   };
-  const handleClick = () => {
-    props.onSave(student, interviewer);
-  };
+  
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
@@ -28,8 +27,9 @@ export default function Form(props) {
       setError("Please select an interviewer");
       return;
     }
-  
-    props.onSave(student, interviewer);
+
+    setError("");
+    props.onSave(student, interviewer, props.edit);
   }
 
   return (
@@ -48,6 +48,7 @@ export default function Form(props) {
         </form>
         <section className="appointment__validation">{error}</section>
         <InterviewerList
+          data-testid="interviewer-icon"
           value={interviewer}
           interviewers={props.interviewers}
           onChange={setInterviewer}
