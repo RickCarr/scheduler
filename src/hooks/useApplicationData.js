@@ -19,7 +19,7 @@ export default function useApplicationData() {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     });
   }, []);
-  
+
   //vars to be used for both Book & Cancel interview
   const currentDayIndex = state.days.findIndex(day => day.name === state.day);
   const daysCopy = [...state.days];
@@ -35,7 +35,7 @@ export default function useApplicationData() {
     };
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
-        if (!edit) { daysCopy[currentDayIndex].spots--;}
+        if (!edit) { daysCopy[currentDayIndex].spots--; }
         setState({
           ...state,
           appointments,

@@ -1,23 +1,33 @@
 # Interview Scheduler
+- A single page applicaiton (SPA) built using React.<br>
+- Data persisted by the API server using a PostgreSQL database.<br>
+- The client app communications with API server over HTTP in JSON format.<br>
+- Functionality testing with Storybook, Jest and Cypress.
 
-## Setup
+## Screenshots
 
-Install dependencies with `npm install`.
 
-## Running Webpack Development Server
 
-```sh
-npm start
-```
+## Getting Started
 
-## Running Jest Test Framework
+1. Install dependencies using the `npm install` command.
+2. Start the web server using the `npm start` command. The app will be served at <http://localhost:8080/>.
+3. Go to <http://localhost:8080/> in your browser.
 
-```sh
-npm test
-```
 
-## Running Storybook Visual Testbed
+## Dependencies
+`• babel  • storybook • jest • react • sass •`
 
-```sh
-npm run storybook
-```
+#### Running Webpack Development Server
+
+• npm  `start`
+
+
+#### Running Jest Test Framework
+
+• npm `test`
+
+
+#### Running Storybook Visual Testbed
+• npm `run storybook`
+

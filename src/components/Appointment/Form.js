@@ -3,10 +3,10 @@ import InterviewerList from "components/InterviewerList";
 import React, { useState, useTransition } from "react";
 
 
-export default function Form(props) {    
+export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   const reset = () => {
     setStudent("");
@@ -17,7 +17,7 @@ export default function Form(props) {
     reset();
     props.onCancel();
   };
-  
+
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
