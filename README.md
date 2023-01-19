@@ -7,7 +7,7 @@
 
 #
 ## Screenshots
-#
+
 *Main Page*
 ![Main Page](https://github.com/RickCarr/scheduler/blob/master/.storybook/docs/SchedulerMain.PNG?raw=true)
 
@@ -19,7 +19,7 @@
 
 #
 ## Getting Started
-#
+
 1. Install dependencies using the `npm install` command.
 2. Start the web server using the `npm start` command. The app will be served at <http://localhost:8000/>.
 3. Go to <http://localhost:8000/> in your browser.
@@ -27,7 +27,7 @@
 
 #
 ## Dependencies
-#
+
 `• babel  • storybook • jest • react • sass •`
 
 #### Running Webpack Development Server
