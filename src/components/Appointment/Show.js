@@ -14,12 +14,14 @@ export default function Show(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <img
+            data-testid="edit-button"
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
             onClick={props.onEdit}
           />
           <img
+            data-testid="delete-button"
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
